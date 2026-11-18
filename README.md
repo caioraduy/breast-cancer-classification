@@ -8,11 +8,11 @@ Trabalho de aprendizado de máquina com **módulo de treinamento** e **módulo d
 
 Fonte: https://archive.ics.uci.edu/dataset/14/breast+cancer
 
-A base possui 286 registros, 9 atributos preditores e valores ausentes. Faça o download do arquivo **`breast-cancer.data`** na página da UCI e coloque-o na pasta do projeto. O programa aceita também `breast-cancer.csv` com cabeçalho e as colunas:
+A base possui 286 registros, 9 atributos preditores e valores ausentes. O arquivo **`breast-cancer.csv` enviado pelo usuário já está incluído neste pacote**, portanto não é necessário baixá-lo novamente. Alternativamente, o programa aceita `breast-cancer.data` sem cabeçalho diretamente da UCI. As colunas são:
 
 `Class, age, menopause, tumor-size, inv-nodes, node-caps, deg-malig, breast, breast-quad, irradiat`
 
-O código não inclui dados reais no repositório. A variável `breast-quad` usa valores como `left-low` e `right-up` (com hífen).
+O pacote ZIP inclui o CSV fornecido pelo usuário; confira as condições de uso da base antes de publicá-lo no repositório. A variável `breast-quad` usa valores como `left-low` e `right-up` (com hífen).
 
 ## Arquivos
 
@@ -25,6 +25,18 @@ O código não inclui dados reais no repositório. A variável `breast-quad` usa
 | `breast_cancer_treinamento.py` | Treina os três, compara a acurácia de teste e salva o de maior acurácia |
 | `breast_cancer_inferencia.py` | Carrega o modelo selecionado e recebe uma paciente para prever `Class` |
 
+## Resultado com o CSV enviado
+
+Foram avaliados 286 registros (201 `no-recurrence-events` e 85 `recurrence-events`), com divisão estratificada de 80% para treino e 20% para teste, `random_state=42`.
+
+| Modelo | Acurácia no teste |
+| --- | ---: |
+| Árvore de Decisão | 72,41% |
+| Random Forest | 67,24% |
+| K-Means com atribuição de classes | 72,41% |
+
+Os modelos Árvore de Decisão e K-Means empataram; a seleção por ordem de inserção escolheu Árvore de Decisão. Estes resultados dependem da configuração e da divisão de dados, e não representam validade clínica.
+
 ## Como executar
 
 ```bash
@@ -33,7 +45,7 @@ python breast_cancer_treinamento.py
 python breast_cancer_inferencia.py
 ```
 
-O treinamento cria `breast_cancer_resultados.json` e arquivos `.model` (ignorados pelo Git). O resultado inclui o modelo vencedor e a acurácia no conjunto de teste.
+Este pacote também inclui `breast_cancer_resultados.json` e os arquivos `.model` gerados no teste realizado. Eles são ignorados pelo Git por padrão e podem ser recriados executando o treinamento. O resultado inclui o modelo vencedor e a acurácia no conjunto de teste.
 
 ### Informar uma nova paciente
 
